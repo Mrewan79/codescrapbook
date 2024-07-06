@@ -1,0 +1,23 @@
+function parseBase(base, str) {
+  let number = 0;
+  let multiplier = 1;
+  for (let i = str.length - 1; i >= 0; i--) {
+    let digit = str[i].toUpperCase();
+    if (digit >= '0' && digit <= '9') {
+      number += parseInt(digit) * multiplier;
+    } else if (digit >= 'A' && digit <= 'Z') {
+      number += (digit.charCodeAt(0) - 'A'.charCodeAt(0) + 10) * multiplier;
+    }
+    multiplier *= base;
+  }
+  return number;
+}
+
+let dataFirst = ['124f', '8'];
+let dataSecond = ['431M_p', '9'];
+
+let first = parseBase(parseInt(dataFirst[1], 10), dataFirst[0]);
+console.log(first);
+
+let second = parseBase(parseInt(dataSecond[1], 10), dataSecond[0]);
+console.log(second);
