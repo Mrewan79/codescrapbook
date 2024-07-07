@@ -1,0 +1,24 @@
+function luhnAlgorithm(cardNumber) {
+  var sum = 0;
+  var alt = false;
+  for (var i = cardNumber.length - 1; i >= 0; i--) {
+    var n = parseInt(cardNumber.charAt(i));
+    if (alt) {
+      n *= 2;
+      if (n > 9) {
+        n -= 9;
+      }
+    }
+    sum += n;
+    alt = !alt;
+  }
+  return sum % 10 === 0;
+}
+
+// Example usage:
+var cardNumber = "4532015110235117"; // Visa
+if (luhnAlgorithm(cardNumber)) {
+  console.log("Valid card number");
+} else {
+  console.log("Invalid card number");
+}
